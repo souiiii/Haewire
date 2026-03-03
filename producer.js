@@ -1,6 +1,7 @@
 import { Queue } from "bullmq";
+import { connection } from "./redisConfig.js";
 
-const notificationQueue = new Queue("email-queue");
+const notificationQueue = new Queue("email-queue", { connection });
 
 async function init() {
   const res = await notificationQueue.add("email to Shahid", {
