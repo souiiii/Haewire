@@ -32,7 +32,7 @@ app.post("/file-upload", upload.single("uploaded_file"), async (req, res) => {
   const now = new Date().toISOString();
   const file = { ...req.file, id: now + req.file.originalname };
   await File.create(file);
-  printDetails(file);
+  await printDetails(file);
   return res.status(200).json({ msg: "request will be processed shortly" });
 });
 

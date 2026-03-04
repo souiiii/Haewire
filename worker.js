@@ -6,12 +6,6 @@ import { Worker } from "bullmq";
 
 const MONGO_PATH = process.env.MONGO_PATH;
 
-connectToMongoose(MONGO_PATH)
-  .then(() => console.log("worker database connected"))
-  .catch((err) => {
-    console.log(err);
-    process.exit(1);
-  });
 // const sendEmail = (ms) =>
 //   new Promise((res, rej) => {
 //     setTimeout(() => res(), ms);
@@ -52,3 +46,10 @@ const worker = new Worker(
     connection: { host: "127.0.0.1", port: 6379 },
   },
 );
+
+connectToMongoose(MONGO_PATH)
+  .then(() => console.log("worker database connected"))
+  .catch((err) => {
+    console.log(err);
+    process.exit(1);
+  });
