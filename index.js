@@ -17,6 +17,8 @@ const fileQueue = new Queue("file-queue", {
   connection: { host: "127.0.0.1", port: 6379 },
 });
 
+app.use(express.json());
+
 async function printDetails(file) {
   const res = await fileQueue.add(file.id, {
     id: file.id,
@@ -25,8 +27,6 @@ async function printDetails(file) {
 
   console.log("file uploaded added to queue");
 }
-
-app.use(express.json());
 
 app.post("/file-upload", upload.single("uploaded_file"), async (req, res) => {
   const now = new Date().toISOString();
